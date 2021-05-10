@@ -53,13 +53,13 @@ cd ./contrib
 
 ## Build base os including build project deps docker image
 ```sh
-Build image for rhel 8
+#Build image for Centos 8
 docker build -t rpmcentos8onhost -f Dockerfile .
-The above step should mimic classic centos 8 with all build dependencies
+#The above step should mimic classic centos 8 with all build dependencies
 ```
 
 ## Run the instance to buils rpms and srpms
 ```sh
-#Run instance for rhel 8 builds
+#Run instance for Centos 8 builds
 docker run --rm -v /Users/deepak/projects/hello/SOURCES:/root/rpmbuild/SOURCES:ro -v /Users/deepak/projects/hello/RPMS:/root/rpmbuild/RPMS -v /Users/deepak/projects/hello/SRPMS:/root/rpmbuild/SRPMS rpmcentos8onhost -ba SPECS/eip.spec.in
 ```
