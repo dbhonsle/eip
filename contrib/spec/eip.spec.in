@@ -40,7 +40,7 @@ eip shows external ip
 %setup -q -n eip-%{version}
 
 %build
-make
+make clean all
 
 %install
 %make_install

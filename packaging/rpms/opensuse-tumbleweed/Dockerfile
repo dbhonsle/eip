@@ -4,7 +4,7 @@ FROM opensuse/tumbleweed:latest
 ENV GO111MODULE=off
 ENV GOPATH=/go
 ENV PATH $PATH:/usr/local/go/bin:$GOPATH/bin
-RUN zypper install -y xz rpm-build
+RUN zypper install -y xz rpm-build make gcc git
 COPY SPECS /root/rpmbuild/SPECS
 
 COPY --from=golang /usr/local/go /usr/local/go

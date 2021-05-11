@@ -15,7 +15,7 @@
 
 %define _topdir         /root/rpmbuild
 Name:           eip
-Version:        1.0
+Version:        1.0.0
 Release:        0
 License:        GPL-2.0
 Summary:        eip shows external ip && hello displays Hello World
@@ -26,6 +26,12 @@ Source:         eip-%{version}.tar.xz
 #%undefine _missing_build_ids_terminate_build
 #%global debug_package %{nil}
 
+BuildRequires:  gcc
+BuildRequires:  make
+BuildRequires:  rpm-build
+BuildRequires:  xz
+BuildRequires:  git
+
 %description
 $DESCRIPTION
 eip shows external ip
@@ -34,14 +40,16 @@ eip shows external ip
 %setup -q -n eip-%{version}
 
 %build
-mkdir -p /go/src/github.com/dbhonsle
-rm -f /go/src/github.com/dbhonsle/eip
-ln -s ${RPM_BUILD_DIR}/eip-%{version} /go/src/github.com/dbhonsle/eip
-go build -v -o ${GOPATH}/bin/eip github.com/dbhonsle/eip
+#mkdir -p /go/src/github.com/dbhonsle
+#rm -f /go/src/github.com/dbhonsle/eip
+#ln -s ${RPM_BUILD_DIR}/eip-%{version} /go/src/github.com/dbhonsle/eip
+#go build -v -o ${GOPATH}/bin/eip github.com/dbhonsle/eip
+make clean all
 
 %install
-install -d ${RPM_BUILD_ROOT}%{_bindir}
-install -p -m 755 ${GOPATH}/bin/eip ${RPM_BUILD_ROOT}%{_bindir}/eip
+#install -d ${RPM_BUILD_ROOT}%{_bindir}
+#install -p -m 755 ${GOPATH}/bin/eip ${RPM_BUILD_ROOT}%{_bindir}/eip
+%make_install
 
 %files
 %{_bindir}/eip
