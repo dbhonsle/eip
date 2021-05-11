@@ -11,6 +11,7 @@ BUILDTAGS ?= seccomp
 COMMIT_NO := $(shell git rev-parse HEAD 2> /dev/null || true)
 COMMIT ?= $(if $(shell git status --porcelain --untracked-files=no),"$(COMMIT_NO)-dirty","$(COMMIT_NO)")
 VERSION := $(shell cat ./VERSION)
+RPMS_DIR:=$(CURDIR)/packaging/rpms
 
 ################################################################################
 # ============================== OPTIONS =======================================
@@ -53,6 +54,7 @@ build: eip
 
 clean:
 	rm -rf "$(OUT_DIR)/"
+	$(MAKE) -C $(RPMS_DIR) clean
 
 eipimage:
 	$(CONTAINER_ENGINE) build $(CONTAINER_ENGINE_BUILD_FLAGS) -t $(EIP_IMAGE) .
@@ -77,6 +79,9 @@ localcross:
 	CGO_ENABLED=1 GOARCH=ppc64le CC=powerpc64le-linux-gnu-gcc $(GO_BUILD) -o "$(OUT_DIR)/eip-linux-powerpc64le" $(EIP_BUILD_FLAGS) .
 	CGO_ENABLED=1 GOARCH=s390x CC=s390x-linux-gnu-gcc $(GO_BUILD) -o "$(OUT_DIR)/eip-linux-s390x" $(EIP_BUILD_FLAGS) .
 
+rpm: ## build rpm packages
+	$(MAKE) VERSION=$(VERSION) -C $(RPMS_DIR) rpm
+
 install:
 #        mkdir -p $(DESTDIR)/usr/bin
 #        install -m 0755 cello $(DESTDIR)/usr/bin/cello
@@ -84,4 +89,4 @@ install:
 	$(INSTALL) "$(OUT_DIR)/$(EIP_BINARY_NAME)" "$(INSTALL_DIR)/$(EIP_BINARY_NAME)"
 
 #################################################################################
-.PHONY: all eip build install clean eipimage dbuild
+.PHONY: all eip build install clean eipimage dbuild rpm
