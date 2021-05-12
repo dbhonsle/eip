@@ -4,7 +4,7 @@ FROM opensuse/leap:15.3
 ENV GO111MODULE=off
 ENV GOPATH=/go
 ENV PATH $PATH:/usr/local/go/bin:$GOPATH/bin
-RUN zypper install -y xz rpm-build make gcc git
+RUN zypper install -y xz rpm-build make gcc git glib2-devel glibc-devel glibc-devel-static
 RUN mkdir -p /root/rpmbuild/BUILD
 COPY SPECS /root/rpmbuild/SPECS
 

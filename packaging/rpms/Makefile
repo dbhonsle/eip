@@ -1,9 +1,9 @@
 ARCH=$(shell uname -m)
 
-rhel8.1: buildtgz
+opensuse-leap: buildtgz
 	docker build \
 	-t rpmbuild-$@/$(ARCH) \
-	-f $@//Dockerfile \
+	-f $@/Dockerfile \
 	.
 	mkdir -p rpmbuild/RPMS
 	mkdir -p rpmbuild/SRPMS
@@ -12,10 +12,12 @@ rhel8.1: buildtgz
 	-v $(CURDIR)/rpmbuild/RPMS:/root/rpmbuild/RPMS \
 	-v $(CURDIR)/rpmbuild/SRPMS:/root/rpmbuild/SRPMS \
 	rpmbuild-$@/$(ARCH) \
-	-ba SPECS/eip.spec
+	-ba \
+	--define '_version $(VERSION)' \
+	SPECS/eip.spec
 
 buildtgz: rpmbuild/SOURCES/eip-$(VERSION).tgz
-# --exclude .git
+
 rpmbuild/SOURCES/eip-$(VERSION).tgz:
 	rm -rf $(@D)
 	$(eval TMPDIR := $(shell mktemp -d))
@@ -28,10 +30,10 @@ rpmbuild/SOURCES/eip-$(VERSION).tgz:
 	cp $(TMPDIR)/eip-$(VERSION).tgz $(@D)/
 	rm -rf $(TMPDIR)
 
-rpm: rhel8.1
+rpm: opensuse-leap
 
 
 clean:
 	rm -rf rpmbuild/
 
-.PHONY: rhel8.1 buildtgz clean
+.PHONY: opensuse-leap buildtgz clean

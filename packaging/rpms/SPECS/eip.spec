@@ -15,7 +15,11 @@
 
 %define _topdir         /root/rpmbuild
 Name:           eip
+%if 0%{?_version:1}
+Version:        %{_version}
+%else
 Version:        1.0.0
+%endif
 Release:        0
 License:        GPL-2.0
 Summary:        eip shows external ip && hello displays Hello World
@@ -26,11 +30,24 @@ Source:         eip-%{version}.tgz
 #%undefine _missing_build_ids_terminate_build
 #%global debug_package %{nil}
 
-BuildRequires:  gcc
 BuildRequires:  make
-BuildRequires:  rpm-build
+BuildRequires: gcc
 BuildRequires:  xz
 BuildRequires:  git
+BuildRequires: glib2-devel
+BuildRequires: glibc-devel
+%if 0%{?suse_version:1}
+BuildRequires: glibc-devel-static
+%if 0{?_install_go:1}
+golang-packaging
+%endif
+%else
+BuildRequires: glibc-static
+%if 0{?_install_go:1}
+golang-bin
+%endif  
+%endif
+
 
 %description
 $DESCRIPTION
