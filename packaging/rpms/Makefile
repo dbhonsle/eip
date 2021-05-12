@@ -18,7 +18,7 @@ opensuse-leap: buildtgz
 
 buildtgz: rpmbuild/SOURCES/eip-$(VERSION).tar.gz
 
-rpmbuild/SOURCES/eip-$(VERSION).tgz:
+rpmbuild/SOURCES/eip-$(VERSION).tar.gz:
 	rm -rf $(@D)
 	$(eval TMPDIR := $(shell mktemp -d))
 	docker run --rm -w /v \
