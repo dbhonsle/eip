@@ -3,12 +3,12 @@ OUT_DIR=$(REPO_ROOT)/bin
 CONTAINER_ENGINE := docker
 GO ?= go
 
-GIT_BRANCH := $(shell git rev-parse --abbrev-ref HEAD 2>/dev/null)
-GIT_BRANCH_CLEAN := $(shell echo $(GIT_BRANCH) | sed -e "s/[^[:alnum:]]/-/g")
+GIT_BRANCH ?= $(shell git rev-parse --abbrev-ref HEAD 2>/dev/null)
+GIT_BRANCH_CLEAN ?= $(shell echo $(GIT_BRANCH) | sed -e "s/[^[:alnum:]]/-/g")
 EIP_IMAGE := eip_dev$(if $(GIT_BRANCH_CLEAN),:$(GIT_BRANCH_CLEAN))
 PROJECT := github.com/dbhonsle/eip-docker
 BUILDTAGS ?= seccomp
-COMMIT_NO := $(shell git rev-parse HEAD 2> /dev/null || true)
+COMMIT_NO ?= $(shell git rev-parse HEAD 2> /dev/null || true)
 COMMIT ?= $(if $(shell git status --porcelain --untracked-files=no),"$(COMMIT_NO)-dirty","$(COMMIT_NO)")
 VERSION := $(shell cat ./VERSION)
 RPMS_DIR:=$(CURDIR)/packaging/rpms
@@ -80,7 +80,7 @@ localcross:
 	CGO_ENABLED=1 GOARCH=s390x CC=s390x-linux-gnu-gcc $(GO_BUILD) -o "$(OUT_DIR)/eip-linux-s390x" $(EIP_BUILD_FLAGS) .
 
 rpm: ## build rpm packages
-	$(MAKE) VERSION=$(VERSION) -C $(RPMS_DIR) rpm
+	$(MAKE) GIT_BRANCH=$(GIT_BRANCH) GIT_BRANCH_CLEAN=$(GIT_BRANCH_CLEAN) COMMIT_NO=$(COMMIT_NO) COMMIT=$(COMMIT) VERSION=$(VERSION) -C $(RPMS_DIR) rpm
 
 install:
 #        mkdir -p $(DESTDIR)/usr/bin

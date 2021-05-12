@@ -61,7 +61,7 @@ eip shows external ip
 #rm -f /go/src/github.com/dbhonsle/eip
 #ln -s ${RPM_BUILD_DIR}/eip-%{version} /go/src/github.com/dbhonsle/eip
 #go build -v -o ${GOPATH}/bin/eip github.com/dbhonsle/eip
-make clean all
+make GIT_BRANCH=%{_git_branch} GIT_BRANCH_CLEAN=%{_git_branch_clean} COMMIT_NO=%{_commit_no} COMMIT=%{_commit} VERSION=$(Version) clean all
 
 %install
 #install -d ${RPM_BUILD_ROOT}%{_bindir}

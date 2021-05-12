@@ -1,6 +1,6 @@
 ARCH=$(shell uname -m)
 
-opensuse-leap: buildtgz
+opensuse-leap: build-git-tgz
 	docker build \
 	-t rpmbuild-$@/$(ARCH) \
 	-f $@/Dockerfile \
@@ -14,6 +14,10 @@ opensuse-leap: buildtgz
 	rpmbuild-$@/$(ARCH) \
 	-ba \
 	--define '_version $(VERSION)' \
+	--define '_git_branch $(GIT_BRANCH)' \
+	--define '_git_branch_clean $(GIT_BRANCH_CLEAN)' \
+	--define '_commit_no $(COMMIT_NO)' \
+	--define '_commit $(COMMIT)' \
 	SPECS/eip.spec
 
 buildtgz: rpmbuild/SOURCES/eip-$(VERSION).tar.gz
