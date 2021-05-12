@@ -27,7 +27,7 @@ rpmbuild/SOURCES/eip-$(VERSION).tar.gz:
 		alpine \
 		tar -C / -c -z -f /v/eip-$(VERSION).tar.gz eip-$(VERSION)
 	mkdir -p $(@D)
-	cp $(TMPDIR)/eip-$(VERSION).tgz $(@D)/
+	cp $(TMPDIR)/eip-$(VERSION).tar.gz $(@D)/
 	rm -rf $(TMPDIR)
 
 rpm: opensuse-leap
