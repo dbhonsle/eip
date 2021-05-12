@@ -39,4 +39,4 @@ build-git-tgz:
 clean:
 	rm -rf rpmbuild/
 
-.PHONY: opensuse-leap buildtgz clean
+.PHONY: opensuse-leap buildtgz clean build-git-tgz
