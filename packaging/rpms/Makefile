@@ -1,6 +1,6 @@
 ARCH=$(shell uname -m)
 
-opensuse-leap: build-git-tgz
+opensuse-leap: build.tar.gz
 	docker build \
 	-t rpmbuild-$@/$(ARCH) \
 	-f $@/Dockerfile \
@@ -20,7 +20,7 @@ opensuse-leap: build-git-tgz
 	--define '_commit $(COMMIT)' \
 	SPECS/eip.spec
 
-buildtgz: rpmbuild/SOURCES/eip-$(VERSION).tar.gz
+build.tar.gz: rpmbuild/SOURCES/eip-$(VERSION).tar.gz
 
 rpmbuild/SOURCES/eip-$(VERSION).tar.gz:
 	rm -rf $(@D)
@@ -29,7 +29,7 @@ rpmbuild/SOURCES/eip-$(VERSION).tar.gz:
 		-v $(realpath $(CURDIR)/../../):/eip-$(VERSION) \
 		-v $(TMPDIR):/v \
 		alpine \
-		tar -C / -c -z -f /v/eip-$(VERSION).tar.gz eip-$(VERSION)
+		tar -C / -c -z -f /v/eip-$(VERSION).tar.gz --exclude .git eip-$(VERSION)
 	mkdir -p $(@D)
 	cp $(TMPDIR)/eip-$(VERSION).tar.gz $(@D)/
 	rm -rf $(TMPDIR)
@@ -41,7 +41,6 @@ build-git-tgz:
 	git archive --prefix "eip-$(VERSION)/" --format "tar.gz" HEAD -o "rpmbuild/SOURCES/eip-$(VERSION).tar.gz"
 
 clean:
-	ls -l
 	rm -rf rpmbuild/
 
-.PHONY: opensuse-leap buildtgz clean build-git-tgz
+.PHONY: opensuse-leap build.tar.gz clean build-git-tgz

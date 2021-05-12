@@ -53,7 +53,6 @@ eip:
 build: eip
 
 clean:
-	ls -l
 	rm -rf "$(OUT_DIR)/"
 	$(MAKE) -C $(RPMS_DIR) clean
 
