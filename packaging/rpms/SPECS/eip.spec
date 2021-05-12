@@ -25,7 +25,7 @@ License:        GPL-2.0
 Summary:        eip shows external ip && hello displays Hello World
 Url:            https://www.rewdale.com/
 Group:          Development/Languages/Other
-Source:         eip-%{version}.tgz
+Source:         eip-%{version}.tar.gz
 
 #%undefine _missing_build_ids_terminate_build
 #%global debug_package %{nil}
