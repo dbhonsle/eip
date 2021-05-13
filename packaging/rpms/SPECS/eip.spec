@@ -27,8 +27,8 @@ Url:            https://www.rewdale.com/
 Group:          Development/Languages/Other
 Source:         eip-%{version}.tar.gz
 
-#%undefine _missing_build_ids_terminate_build
-#%global debug_package %{nil}
+##%undefine _missing_build_ids_terminate_build
+##%global debug_package %{nil}
 
 BuildRequires:  make
 BuildRequires: gcc
@@ -38,14 +38,14 @@ BuildRequires: glib2-devel
 BuildRequires: glibc-devel
 %if 0%{?suse_version:1}
 BuildRequires: glibc-devel-static
-%if 0%{?_install_go:1}
-BuildRequires: golang-packaging
-%endif
+##%if 0%{?_install_go:1}
+##BuildRequires: golang-packaging
+##%endif
 %else
 BuildRequires: glibc-static
-%if 0%{?_install_go:1}
-BuildRequires: golang-bin
-%endif  
+##%if 0%{?_install_go:1}
+##BuildRequires: golang-bin
+##%endif  
 %endif
 
 
@@ -66,7 +66,7 @@ make GIT_BRANCH=%{_git_branch} GIT_BRANCH_CLEAN=%{_git_branch_clean} COMMIT_NO=%
 %install
 #install -d ${RPM_BUILD_ROOT}%{_bindir}
 #install -p -m 755 ${GOPATH}/bin/eip ${RPM_BUILD_ROOT}%{_bindir}/eip
-%make_install
+%make_install GIT_BRANCH=%{_git_branch} GIT_BRANCH_CLEAN=%{_git_branch_clean} COMMIT_NO=%{_commit_no} COMMIT=%{_commit}
 
 %files
 %{_bindir}/eip
