@@ -48,7 +48,7 @@ all: build
 # builds eip locally, outputs to $(OUT_DIR)
 eip:
 #	go build -v -o "$(OUT_DIR)/$(EIP_BINARY_NAME)" $(EIP_BUILD_FLAGS)
-	$(GO_BUILD) -o "$(OUT_DIR)/$(EIP_BINARY_NAME)" .
+	CC=gcc $(GO_BUILD) -o "$(OUT_DIR)/$(EIP_BINARY_NAME)" .
 # alias for building eip
 build: eip
 
