@@ -11,7 +11,7 @@ COPY SPECS /root/rpmbuild/SPECS
 #for s390x builds we set CC=gcc
 RUN \
   if [ "$(uname -m)" = "s390x" ]; then \
-    export CC=gcc\
+    export CC=gcc; \
   fi
 
 COPY --from=golang /usr/local/go /usr/local/go
