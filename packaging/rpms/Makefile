@@ -37,10 +37,6 @@ rpmbuild/SOURCES/eip-$(VERSION).tar.gz:
 
 rpm: opensuse-leap
 
-#build-git-tgz:
-#	mkdir -p rpmbuild/SOURCES
-#	git archive --prefix "eip-$(VERSION)/" --format "tar.gz" HEAD -o "rpmbuild/SOURCES/eip-$(VERSION).tar.gz"
-
 clean:
 	[ ! -d rpmbuild ] || $(CHOWN) -R $(shell id -u):$(shell id -g) rpmbuild
 	rm -rf rpmbuild/

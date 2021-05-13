@@ -50,15 +50,15 @@ GO_BUILD_STATIC := $(GO_CC) CGO_ENABLED=1 $(GO) build -trimpath $(MOD_VENDOR) $(
 .DEFAULT: eip
 
 all: build
+
 # builds eip locally, outputs to $(OUT_DIR)
 eip:
-#	go build -v -o "$(OUT_DIR)/$(EIP_BINARY_NAME)" $(EIP_BUILD_FLAGS)
 	$(GO_BUILD) -o "$(OUT_DIR)/$(EIP_BINARY_NAME)" .
+
 # alias for building eip
 build: eip
 
 clean:
-	contrib/build_rpm.sh
 	rm -rf "$(OUT_DIR)/"
 	$(MAKE) -C $(RPMS_DIR) clean
 
@@ -89,8 +89,6 @@ rpm: ## build rpm packages
 	$(MAKE) GIT_BRANCH=$(GIT_BRANCH) GIT_BRANCH_CLEAN=$(GIT_BRANCH_CLEAN) COMMIT_NO=$(COMMIT_NO) COMMIT=$(COMMIT) VERSION=$(VERSION) -C $(RPMS_DIR) rpm
 
 install:
-#        mkdir -p $(DESTDIR)/usr/bin
-#        install -m 0755 cello $(DESTDIR)/usr/bin/cello
 	$(INSTALL) -d $(INSTALL_DIR)
 	$(INSTALL) "$(OUT_DIR)/$(EIP_BINARY_NAME)" "$(INSTALL_DIR)/$(EIP_BINARY_NAME)"
 
