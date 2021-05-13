@@ -39,12 +39,12 @@ BuildRequires: glibc-devel
 %if 0%{?suse_version:1}
 BuildRequires: glibc-devel-static
 %if 0%{?_install_go:1}
-golang-packaging
+BuildRequires: golang-packaging
 %endif
 %else
 BuildRequires: glibc-static
 %if 0%{?_install_go:1}
-golang-bin
+BuildRequires: golang-bin
 %endif  
 %endif
 

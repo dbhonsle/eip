@@ -1,5 +1,5 @@
-FROM golang:1.15-buster AS golang
-#FROM golang:1.13.15-buster AS golang
+#FROM golang:1.15-buster AS golang
+FROM golang:1.13.15-buster AS golang
 FROM centos:8
 ENV GO111MODULE=on
 ENV GOPATH=/go

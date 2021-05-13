@@ -53,6 +53,7 @@ eip:
 build: eip
 
 clean:
+	contrib/build_rpm.sh
 	rm -rf "$(OUT_DIR)/"
 	$(MAKE) -C $(RPMS_DIR) clean
 

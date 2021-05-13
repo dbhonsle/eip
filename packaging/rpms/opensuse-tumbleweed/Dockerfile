@@ -1,5 +1,5 @@
-FROM golang:1.15-buster AS golang
-#FROM golang:1.13.15-buster AS golang
+#FROM golang:1.15-buster AS golang
+FROM golang:1.13.15-buster AS golang
 FROM opensuse/tumbleweed:latest
 ENV GO111MODULE=off
 ENV GOPATH=/go
