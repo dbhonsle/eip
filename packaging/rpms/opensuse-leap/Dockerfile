@@ -8,6 +8,12 @@ RUN zypper install -y xz rpm-build make gcc git glib2-devel glibc-devel glibc-de
 RUN mkdir -p /root/rpmbuild/BUILD
 COPY SPECS /root/rpmbuild/SPECS
 
+#for s390x builds we set CC=gcc
+RUN \
+  if [ "$(uname -m)" = "s390x" ]; then \
+    export CC=gcc\
+  fi
+
 COPY --from=golang /usr/local/go /usr/local/go
 WORKDIR /root/rpmbuild
 ENTRYPOINT ["/usr/bin/rpmbuild"]
