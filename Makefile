@@ -35,7 +35,7 @@ ifeq ($(shell $(GO) env GOOS),linux)
 endif
 
 ifeq ($(shell $(GO) env GOARCH),s390x)
-	GO_CC := "CC=gcc"
+	GO_CC := CC=gcc
 endif
 
 GO_BUILD := $(GO_CC) $(GO) build -trimpath $(MOD_VENDOR) $(GO_BUILDMODE) $(EXTRA_FLAGS) -tags "$(BUILDTAGS)" \
