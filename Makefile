@@ -1,3 +1,4 @@
+include ./common.mk
 REPO_ROOT:=${CURDIR}
 OUT_DIR=$(REPO_ROOT)/bin
 CONTAINER_ENGINE := docker
@@ -59,6 +60,7 @@ eip:
 build: eip
 
 clean:
+	[ ! -d bin ] || $(CHOWN) -R $(shell id -u):$(shell id -g) bin
 	rm -rf "$(OUT_DIR)/"
 	$(MAKE) -C $(RPMS_DIR) clean
 
