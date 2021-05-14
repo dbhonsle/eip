@@ -10,13 +10,11 @@
 ```sh
 make clean all
 ```
-
-##  Build instructions to build cross platform binaries for virious linux can be used on x86_64 and aarch64 based systems
-```sh
-make clean cross
-```
-
 ##  Build instructions to build rpm for opensuse leap
 ```sh
 make clean rpm
+```
+##  Build instructions to build cross platform binaries for virious linux [Note: cross build can only run on a x86_64 based system]
+```sh
+make clean cross
 ```
