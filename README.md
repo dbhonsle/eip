@@ -11,7 +11,7 @@
 make clean all
 ```
 
-##  Build instructions to build cross platform binaries for virious linux can be used on x86_64 and arch64 based systems
+##  Build instructions to build cross platform binaries for virious linux can be used on x86_64 and aarch64 based systems
 ```sh
 make clean cross
 ```
