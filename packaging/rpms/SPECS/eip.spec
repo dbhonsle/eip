@@ -13,7 +13,7 @@
 # Please submit bugfixes or comments via https://bugs.opensuse.org/
 # 
 
-%define _topdir         /root/rpmbuild
+##%define _topdir         /root/rpmbuild
 Name:           eip
 %if 0%{?_version:1}
 Version:        %{_version}

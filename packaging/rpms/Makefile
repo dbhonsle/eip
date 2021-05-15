@@ -19,6 +19,7 @@ opensuse-leap: build.tar.gz
 	--define '_git_branch_clean $(GIT_BRANCH_CLEAN)' \
 	--define '_commit_no $(COMMIT_NO)' \
 	--define '_commit $(COMMIT)' \
+	--define '_topdir /root/rpmbuild' \
 	SPECS/eip.spec
 
 build.tar.gz: rpmbuild/SOURCES/eip-$(VERSION).tar.gz
