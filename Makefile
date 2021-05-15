@@ -60,7 +60,7 @@ eip:
 build: eip
 
 clean:
-	[ ! -d bin ] || $(CHOWN) -R $(shell id -u):$(shell id -g) bin
+#	[ ! -d bin ] || $(CHOWN) -R $(shell id -u):$(shell id -g) bin
 	rm -rf "$(OUT_DIR)/"
 	$(MAKE) -C $(RPMS_DIR) clean
 
