@@ -2,7 +2,7 @@
 set -euxo pipefail
 
 # returned path can vary: /usr/bin/dnf /bin/dnf ...
-pkg_manager=$(command -v dnf yum | head -n1)
+pkg_manager=$(command -v dnf yum zypper | head -n1)
 echo "Package manager binary: $pkg_manager"
 
 declare -a PKGS=(\
