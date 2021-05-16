@@ -35,6 +35,8 @@ elif (grep -i 'PRETTY_NAME' /etc/os-release | grep -i 'Red Hat\|CentOS\|Fedora' 
 	)
 fi
 
+export extra_arg="--without debug"
+
 echo ${PKGS[*]}
 #sudo $pkg_manager install -y ${PKGS[*]}
 $pkg_manager install -y ${PKGS[*]}
@@ -44,3 +46,4 @@ $pkg_manager install -y ${PKGS[*]}
 rm -f eip-*.src.rpm
 make -f ./packaging/localrpm/Makefile
 
+rpmbuild --rebuild ${extra_arg:-} eip-*.src.rpm
