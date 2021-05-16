@@ -90,7 +90,7 @@ rpm: ## build rpm packages
 	$(MAKE) GIT_BRANCH=$(GIT_BRANCH) GIT_BRANCH_CLEAN=$(GIT_BRANCH_CLEAN) COMMIT_NO=$(COMMIT_NO) COMMIT=$(COMMIT) VERSION=$(VERSION) -C $(RPMS_DIR) rpm
 
 localrpm:
-	packaging/rpms/build_rpm.sh
+	packaging/localrpm/build_rpm.sh
 
 install:
 	$(INSTALL) -d $(INSTALL_DIR)
