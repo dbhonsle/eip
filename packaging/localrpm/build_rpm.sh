@@ -28,6 +28,8 @@ if [[ $pkg_manager == *dnf ]]; then
     if (dnf -v -C repolist all|grep "Repo-id      : PowerTools" >/dev/null); then
         $(SUDO) dnf config-manager --set-enabled PowerTools
     elif (dnf -v -C repolist all|grep "Repo-id            : powertools" >/dev/null); then
+        # Centos 8.1 will require dnf-plugins-core
+        $(SUDO) dnf install -y dnf-plugins-core
         $(SUDO) dnf config-manager --set-enabled powertools
     fi
 fi
