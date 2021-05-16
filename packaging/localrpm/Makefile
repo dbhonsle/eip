@@ -1,6 +1,6 @@
 #!/usr/bin/make -f
 mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
-current_dir := $(notdir $(patsubst %/,%,$(dir $(mkfile_path))))
+current_dir := packaging/$(notdir $(patsubst %/,%,$(dir $(mkfile_path))))
 outdir := $(CURDIR)
 topdir := $(CURDIR)/rpmbuild
 #SHORT_COMMIT ?= $(shell git rev-parse --short=8 HEAD)
@@ -11,8 +11,7 @@ export GO111MODULE=on
 
 srpm:
 	mkdir -p $(topdir)
-#	sh $(current_dir)/prepare.sh
-	sh ./packaging/localrpm/prepare.sh
+	sh $(current_dir)/prepare.sh
 	rpmbuild -bs -D "dist %{nil}" -D "_sourcedir build/" -D "_srcrpmdir $(outdir)" -D "_topdir $(topdir)" -D "_version $(VERSION)" -D "_buildrequires_go $(BUILDREQUIRES_GO)" --nodeps ${extra_arg:-""} packaging/rpms/SPECS/eip.spec
 
 build_binary:
