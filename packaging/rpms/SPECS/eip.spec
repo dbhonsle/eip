@@ -13,7 +13,9 @@
 # Please submit bugfixes or comments via https://bugs.opensuse.org/
 # 
 
-##%define _topdir         /root/rpmbuild
+%if 0%{?_topdir:0}
+%define _topdir         /root/rpmbuild
+%endif
 Name:           eip
 %if 0%{?_version:1}
 Version:        %{_version}
@@ -27,8 +29,12 @@ Url:            https://www.rewdale.com/
 Group:          Development/Languages/Other
 Source:         eip-%{version}.tar.gz
 
-##%undefine _missing_build_ids_terminate_build
-##%global debug_package %{nil}
+# Below is required for Centos 
+%undefine _missing_build_ids_terminate_build
+
+
+%global debug_package %{nil}
+
 
 BuildRequires:  make
 BuildRequires: gcc
