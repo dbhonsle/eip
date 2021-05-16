@@ -34,7 +34,6 @@ if [[ $pkg_manager == *dnf ]]; then
     fi
 fi
 
-#grep -i 'PRETTY_NAME' /etc/os-release | grep "SUSE"
 if (grep -i 'PRETTY_NAME' /etc/os-release | grep "SUSE" ) ; then
     PKGS+=(glibc-devel-static \
         golang-packaging \
