@@ -89,6 +89,9 @@ localcross:
 rpm: ## build rpm packages
 	$(MAKE) GIT_BRANCH=$(GIT_BRANCH) GIT_BRANCH_CLEAN=$(GIT_BRANCH_CLEAN) COMMIT_NO=$(COMMIT_NO) COMMIT=$(COMMIT) VERSION=$(VERSION) -C $(RPMS_DIR) rpm
 
+localrpm:
+	packaging/rpms/build_rpm.sh
+
 install:
 	$(INSTALL) -d $(INSTALL_DIR)
 	$(INSTALL) "$(OUT_DIR)/$(EIP_BINARY_NAME)" "$(INSTALL_DIR)/$(EIP_BINARY_NAME)"

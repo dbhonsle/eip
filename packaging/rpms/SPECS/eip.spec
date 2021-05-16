@@ -38,14 +38,14 @@ BuildRequires: glib2-devel
 BuildRequires: glibc-devel
 %if 0%{?suse_version:1}
 BuildRequires: glibc-devel-static
-##%if 0%{?_install_go:1}
-##BuildRequires: golang-packaging
-##%endif
+%if 0%{?_buildrequires_go:1}
+BuildRequires: golang-packaging
+%endif
 %else
 BuildRequires: glibc-static
-##%if 0%{?_install_go:1}
-##BuildRequires: golang-bin
-##%endif  
+%if 0%{?_buildrequires_go:1}
+BuildRequires: golang-bin
+%endif  
 %endif
 
 
