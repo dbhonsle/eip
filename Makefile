@@ -61,6 +61,7 @@ build: eip
 
 clean:
 	rm -rf "$(OUT_DIR)/"
+	rm -rf build
 	$(MAKE) -C $(RPMS_DIR) clean
 
 eipimage:
@@ -90,6 +91,7 @@ rpm: ## build rpm packages
 	$(MAKE) GIT_BRANCH=$(GIT_BRANCH) GIT_BRANCH_CLEAN=$(GIT_BRANCH_CLEAN) COMMIT_NO=$(COMMIT_NO) COMMIT=$(COMMIT) VERSION=$(VERSION) -C $(RPMS_DIR) rpm
 
 localrpm:
+	rm -rf build/* *.src.rpm ~/rpmbuild/RPMS/*
 	packaging/localrpm/build_rpm.sh
 
 install:

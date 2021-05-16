@@ -46,4 +46,8 @@ $pkg_manager install -y ${PKGS[*]}
 rm -f eip-*.src.rpm
 make -f ./packaging/localrpm/Makefile
 
+if [ -d ~/rpmbuild/BUILD ]; then
+    chmod -R +w ~/rpmbuild/BUILD
+fi
+
 rpmbuild --rebuild ${extra_arg:-} eip-*.src.rpm
