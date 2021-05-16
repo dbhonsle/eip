@@ -4,7 +4,7 @@ current_dir := $(notdir $(patsubst %/,%,$(dir $(mkfile_path))))
 outdir := $(CURDIR)
 topdir := $(CURDIR)/rpmbuild
 #SHORT_COMMIT ?= $(shell git rev-parse --short=8 HEAD)
-VERSION := $(shell cat ../../VERSION)
+VERSION := $(shell cat ./VERSION)
 BUILDREQUIRES_GO := 1
 
 export GO111MODULE=on
