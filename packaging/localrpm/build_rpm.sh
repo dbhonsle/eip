@@ -36,10 +36,11 @@ elif (grep -i 'PRETTY_NAME' /etc/os-release | grep -i 'Red Hat\|CentOS\|Fedora' 
 fi
 
 echo ${PKGS[*]}
-sudo $pkg_manager install -y ${PKGS[*]}
+#sudo $pkg_manager install -y ${PKGS[*]}
+$pkg_manager install -y ${PKGS[*]}
 
 # clean up src.rpm as it's been built
-sudo rm -f eip-*.src.rpm
-
+#sudo rm -f eip-*.src.rpm
+rm -f eip-*.src.rpm
 make -f ./Makefile
 
