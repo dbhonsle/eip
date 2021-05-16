@@ -3,6 +3,8 @@ set -euxo pipefail
 
 if [ "$(id -u)" -ne 0 ]; then
     SUDO=sudo
+else
+    SUDO=
 fi
 
 # returned path can vary: /usr/bin/dnf /bin/dnf ...
