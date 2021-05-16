@@ -42,5 +42,5 @@ $pkg_manager install -y ${PKGS[*]}
 # clean up src.rpm as it's been built
 #sudo rm -f eip-*.src.rpm
 rm -f eip-*.src.rpm
-make -f ./Makefile
+make -f ./packaging/localrpm/Makefile
 
