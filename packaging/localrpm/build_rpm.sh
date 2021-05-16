@@ -38,8 +38,8 @@ fi
 export extra_arg="--without debug"
 
 echo ${PKGS[*]}
-#sudo $pkg_manager install -y ${PKGS[*]}
-$pkg_manager install -y ${PKGS[*]}
+sudo $pkg_manager install -y ${PKGS[*]}
+#$pkg_manager install -y ${PKGS[*]}
 
 # clean up src.rpm as it's been built
 #sudo rm -f eip-*.src.rpm
