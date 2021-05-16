@@ -11,8 +11,8 @@ export GO111MODULE=on
 
 srpm:
 	mkdir -p $(topdir)
-	echo $(current_dir)
-	sh $(current_dir)/prepare.sh
+#	sh $(current_dir)/prepare.sh
+	sh ./packaging/localrpm/prepare.sh
 	rpmbuild -bs -D "dist %{nil}" -D "_sourcedir build/" -D "_srcrpmdir $(outdir)" -D "_topdir $(topdir)" -D "_version $(VERSION)" -D "_buildrequires_go $(BUILDREQUIRES_GO)" --nodeps ${extra_arg:-""} packaging/rpms/SPECS/eip.spec
 
 build_binary:
