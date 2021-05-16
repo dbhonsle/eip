@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 set -euxo pipefail
 
+if [ "$(id -u)" -ne 0 ]; then
+    SUDO=sudo
+fi
+
 # returned path can vary: /usr/bin/dnf /bin/dnf ...
 pkg_manager=$(command -v dnf yum zypper | head -n1)
 echo "Package manager binary: $pkg_manager"
@@ -38,12 +42,11 @@ fi
 export extra_arg="--without debug"
 
 echo ${PKGS[*]}
-sudo $pkg_manager install -y ${PKGS[*]}
-#$pkg_manager install -y ${PKGS[*]}
+$SUDO $pkg_manager install -y ${PKGS[*]}
 
 # clean up src.rpm as it's been built
-#sudo rm -f eip-*.src.rpm
-rm -f eip-*.src.rpm
+$SUDO rm -f eip-*.src.rpm
+
 make -f ./packaging/localrpm/Makefile
 
 if [ -d ~/rpmbuild/BUILD ]; then
