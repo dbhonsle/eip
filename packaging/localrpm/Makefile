@@ -4,6 +4,8 @@ current_dir := packaging/$(notdir $(patsubst %/,%,$(dir $(mkfile_path))))
 outdir := $(CURDIR)
 topdir := $(CURDIR)/rpmbuild
 VERSION := $(shell cat ./VERSION)
+#value of RELEASE should match Release in spec file
+RELEASE := 0
 BUILDREQUIRES_GO := 1
 
 export GO111MODULE=on
@@ -15,7 +17,7 @@ srpm:
 
 build_binary:
 	mkdir -p $(topdir)
-	rpmbuild --rebuild -D "_rpmdir $(outdir)" -D "_topdir $(topdir)" -D "_version $(VERSION)" -D "_buildrequires_go $(BUILDREQUIRES_GO)" ${extra_arg:-""} $(outdir)/eip-$(VERSION).src.rpm
+	rpmbuild --rebuild -D "_rpmdir $(outdir)" -D "_topdir $(topdir)" -D "_version $(VERSION)" -D "_buildrequires_go $(BUILDREQUIRES_GO)" ${extra_arg:-""} $(outdir)/eip-$(VERSION)-$(RELEASE).src.rpm
 
 clean:
 	rm -fr rpms
