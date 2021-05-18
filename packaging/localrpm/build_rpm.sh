@@ -32,13 +32,22 @@ if [[ $pkg_manager == *dnf ]]; then
         $(SUDO) dnf install -y dnf-plugins-core
         $(SUDO) dnf config-manager --set-enabled powertools
     fi
+    # Note [rhel-8]
+    # rhel-8 requires an active subscription and enabling 
+    # codeready-builder-for-rhel-8-rhui-rpms repo
+    # use below command to enable it
+    # sudo dnf config-manager --set-enabled codeready-builder-for-rhel-8-rhui-rpms
+    # [ubi rhel-8 & above docker images]
+    # ubi rhel-8.1 and higher version images come with ubi-8-codeready-builder repo enabled by default
 fi
 
 if (grep -i 'PRETTY_NAME' /etc/os-release | grep "SUSE" ) ; then
-    PKGS+=(glibc-devel-static \
-        golang-packaging \
-	)
-elif (grep -i 'PRETTY_NAME' /etc/os-release | grep -i 'Red Hat\|CentOS\|Fedora' ) ; then
+    # For SLES 15.x enable packagehub
+    # sudo SUSEConnect -p PackageHub/15.x/x86_64 [replace x with service pack version of installed os]
+        PKGS+=(glibc-devel-static \
+            golang-packaging \
+	    )
+elif (grep -i 'PRETTY_NAME' /etc/os-release | grep -i 'Red Hat\|CentOS\|Fedora|\Amazon' ) ; then
     PKGS+=(glibc-static \
         golang-bin \
 	)
