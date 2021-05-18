@@ -26,11 +26,11 @@ if [[ $pkg_manager == *dnf ]]; then
     # install all the pkgs we define in PKGS
     # PowerTools exists on centos-8 but not on fedora-30 and rhel-8                             
     if (dnf -v -C repolist all|grep "Repo-id            : PowerTools" >/dev/null); then
-        $(SUDO) dnf install -y dnf-plugins-core
-        $(SUDO) dnf config-manager --set-enabled PowerTools
+        $SUDO dnf install -y dnf-plugins-core
+        $SUDO dnf config-manager --set-enabled PowerTools
     elif (dnf -v -C repolist all|grep "Repo-id            : powertools" >/dev/null); then
-        $(SUDO) dnf install -y dnf-plugins-core
-        $(SUDO) dnf config-manager --set-enabled powertools
+        $SUDO dnf install -y dnf-plugins-core
+        $SUDO dnf config-manager --set-enabled powertools
     fi
     # Note [rhel-8]
     # rhel-8 requires an active subscription and enabling 
