@@ -47,7 +47,7 @@ if (grep -i 'PRETTY_NAME' /etc/os-release | grep "SUSE" ) ; then
         PKGS+=(glibc-devel-static \
             golang-packaging \
 	    )
-elif (grep -i 'PRETTY_NAME' /etc/os-release | grep -i 'Red Hat\|CentOS\|Fedora|\Amazon' ) ; then
+elif (grep -i 'PRETTY_NAME' /etc/os-release | grep -i 'Red Hat\|CentOS\|Fedora\|Amazon' ) ; then
     PKGS+=(glibc-static \
         golang-bin \
 	)
