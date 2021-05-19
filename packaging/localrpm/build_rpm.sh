@@ -37,7 +37,7 @@ if [[ $pkg_manager == *dnf ]]; then
     # codeready-builder-for-rhel-8-rhui-rpms repo
     # use below command to enable it
     # sudo dnf config-manager --set-enabled codeready-builder-for-rhel-8-rhui-rpms
-    # [ubi rhel-8 & above docker images]
+    # [ubi rhel-8.1 & above docker images]
     # ubi rhel-8.1 and higher version images come with ubi-8-codeready-builder repo enabled by default
 fi
 
