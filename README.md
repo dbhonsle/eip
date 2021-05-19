@@ -5,6 +5,7 @@
 - Docker
 - gcc
 - make
+- go 1.15 and above
 
 ##  Build instructions To build binary for local platform
 ```sh
