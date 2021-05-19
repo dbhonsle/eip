@@ -14,10 +14,6 @@ make clean all
 ```sh
 make clean rpm
 ```
-##  Build instructions To build rpm for local platform [Note: can be used on any rpm pacakage management supported system]
-```sh
-make clean localrpm
-```
 ##  Build instructions To build rpm for local platform [Note: can be used on following rpm pacakage management supported system like rhel-8, ubi rhel-8:1 & above, centos-8, SLES 15.x, Amazon Linux 2, fedora - 33 & above]
 # Prerequisites:
 # [rhel-8]
@@ -37,4 +33,8 @@ ubi rhel-8.1 and higher version images come with ubi-8-codeready-builder repo en
 # Build rpm locally:
 ```sh
 make clean localrpm
+```
+##  Build instructions to build cross platform binaries for virious linux [Note: cross build can only run on a x86_64 based system]
+```sh
+make clean cross
 ```
